@@ -1,5 +1,5 @@
 'use client'
-
+import Image from 'next/image'
 import {
   createContext,
   useContext,
@@ -20,6 +20,7 @@ import { GridPattern } from '@/components/GridPattern'
 import { Logo, Logomark } from '@/components/Logo'
 import { Offices } from '@/components/Offices'
 import { SocialMedia } from '@/components/SocialMedia'
+import TowsterLogo from '@/images/towster-logo.png'
 
 const RootLayoutContext = createContext<{
   logoHovered: boolean
@@ -69,16 +70,7 @@ function Header({
           onMouseEnter={() => setLogoHovered(true)}
           onMouseLeave={() => setLogoHovered(false)}
         >
-          <Logomark
-            className="h-8 sm:hidden"
-            invert={invert}
-            filled={logoHovered}
-          />
-          <Logo
-            className="hidden h-8 sm:block"
-            invert={invert}
-            filled={logoHovered}
-          />
+          <Image className="w-60" src={TowsterLogo} alt="Towster Logo" />
         </Link>
         <div className="flex items-center gap-x-8">
           <Button href="/contact" invert={invert}>

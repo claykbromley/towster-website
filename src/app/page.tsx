@@ -18,9 +18,10 @@ import logoNorthAdventures from '@/images/clients/north-adventures/logo-light.sv
 import logoPhobiaDark from '@/images/clients/phobia/logo-dark.svg'
 import logoPhobiaLight from '@/images/clients/phobia/logo-light.svg'
 import logoUnseal from '@/images/clients/unseal/logo-light.svg'
+import TowsterLogo from '@/images/towster-logo.png'
 import imageLaptop from '@/images/laptop.jpg'
 import { type CaseStudy, type MDXEntry, loadCaseStudies } from '@/lib/mdx'
-
+//v2
 const clients = [
   ['Phobia', logoPhobiaLight],
   ['Family Fund', logoFamilyFund],
@@ -69,15 +70,17 @@ function CaseStudies({
   return (
     <>
       <SectionIntro
-        title="Harnessing technology for a brighter future"
+        title="Meet TOWSTER Pod"
         className="mt-24 sm:mt-32 lg:mt-40"
       >
         <p>
-          We believe technology is the answer to the world’s greatest
-          challenges. It’s also the cause, so we find ourselves in bit of a
-          catch 22 situation.
+          The TOWSTER Pod is revolutionizing amphibious CASEVAC operations
+          through fully autonomous transportation in a controlled, submerged
+          environment. Vital tracking and hyperbaric oxygen treatment permit
+          extension of the medical “golden hour” for injured personnel.
         </p>
       </SectionIntro>
+
       <Container className="mt-16">
         <FadeInStagger className="grid grid-cols-1 gap-8 lg:grid-cols-3">
           {caseStudies.map((caseStudy) => (
@@ -124,16 +127,6 @@ function CaseStudies({
 function Services() {
   return (
     <>
-      <SectionIntro
-        eyebrow="Services"
-        title="We help you identify, explore and respond to new opportunities."
-        className="mt-24 sm:mt-32 lg:mt-40"
-      >
-        <p>
-          As long as those opportunities involve giving us money to re-purpose
-          old projects — we can come up with an endless number of those.
-        </p>
-      </SectionIntro>
       <Container className="mt-16">
         <div className="lg:flex lg:items-center lg:justify-end">
           <div className="flex justify-center lg:w-1/2 lg:justify-end lg:pr-12">
@@ -185,32 +178,43 @@ export default async function Home() {
       <Container className="mt-24 sm:mt-32 md:mt-56">
         <FadeIn className="max-w-3xl">
           <h1 className="font-display text-5xl font-medium tracking-tight text-neutral-950 [text-wrap:balance] sm:text-7xl">
-            Towster
+            Mobile Hyperbaric Solution
           </h1>
           <p className="mt-6 text-xl text-neutral-600">
-            We are a development studio working at the intersection of design
-            and technology. It’s a really busy intersection though — a lot of
-            our staff have been involved in hit and runs.
+            Towster Corporation is specializing in innovative medical
+            technology, specifically in creating automated mission critical
+            solutions for critical care scenarios. Our team is accustomed to
+            navigating the complex and dynamic field of medical tech
+            development, where the stakes are high and the pressure is always
+            on.
           </p>
         </FadeIn>
+        {/* <Timeline /> */}
       </Container>
-
-      <Clients />
-
-      <CaseStudies caseStudies={caseStudies} />
-
       <Testimonial
         className="mt-24 sm:mt-32 lg:mt-40"
-        client={{ name: 'Phobia', logo: logoPhobiaDark }}
+        client={{ name: '', logo: '' }}
       >
-        The team at Studio went above and beyond with our onboarding, even
-        finding a way to access the user’s microphone without triggering one of
-        those annoying permission dialogs.
+        <SectionIntro
+          title="Meet TOWSTER Pod"
+          className="mt-16 sm:mt-16 lg:mt-40"
+        >
+          <p>
+            The TOWSTER Pod is revolutionizing amphibious CASEVAC operations
+            through fully autonomous transportation in a controlled, submerged
+            environment. Vital tracking and hyperbaric oxygen treatment permit
+            extension of the medical “golden hour” for injured personnel.
+          </p>
+        </SectionIntro>
       </Testimonial>
 
-      <Services />
+      {/* <Clients /> */}
 
-      <ContactSection />
+      {/* <CaseStudies caseStudies={caseStudies} /> */}
+
+      {/* <Services /> */}
+
+      {/* <ContactSection /> */}
     </>
   )
 }
