@@ -68,7 +68,7 @@ function CaseStudies({
   caseStudies: Array<MDXEntry<CaseStudy>>
 }) {
   return (
-    <>
+    <div>
       <SectionIntro
         title="Meet TOWSTER Pod"
         className="mt-24 sm:mt-32 lg:mt-40"
@@ -120,7 +120,7 @@ function CaseStudies({
           ))}
         </FadeInStagger>
       </Container>
-    </>
+    </div>
   )
 }
 
@@ -174,7 +174,7 @@ export default async function Home() {
   let caseStudies = (await loadCaseStudies()).slice(0, 3)
 
   return (
-    <>
+    <div>
       <Container className="mt-24 sm:mt-32 md:mt-56">
         <FadeIn className="max-w-3xl">
           <h1 className="font-display text-5xl font-medium tracking-tight text-neutral-950 [text-wrap:balance] sm:text-7xl">
@@ -191,22 +191,18 @@ export default async function Home() {
         </FadeIn>
         {/* <Timeline /> */}
       </Container>
-      <Testimonial
-        className="mt-24 sm:mt-32 lg:mt-40"
-        client={{ name: '', logo: '' }}
+
+      <SectionIntro
+        title="Meet TOWSTER Pod"
+        className="mt-16 sm:mt-16 lg:mt-40"
       >
-        <SectionIntro
-          title="Meet TOWSTER Pod"
-          className="mt-16 sm:mt-16 lg:mt-40"
-        >
-          <p>
-            The TOWSTER Pod is revolutionizing amphibious CASEVAC operations
-            through fully autonomous transportation in a controlled, submerged
-            environment. Vital tracking and hyperbaric oxygen treatment permit
-            extension of the medical “golden hour” for injured personnel.
-          </p>
-        </SectionIntro>
-      </Testimonial>
+        <p>
+          The TOWSTER Pod is revolutionizing amphibious CASEVAC operations
+          through fully autonomous transportation in a controlled, submerged
+          environment. Vital tracking and hyperbaric oxygen treatment permit
+          extension of the medical “golden hour” for injured personnel.
+        </p>
+      </SectionIntro>
 
       {/* <Clients /> */}
 
@@ -215,6 +211,6 @@ export default async function Home() {
       {/* <Services /> */}
 
       {/* <ContactSection /> */}
-    </>
+    </div>
   )
 }
