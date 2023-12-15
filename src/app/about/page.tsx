@@ -19,7 +19,7 @@ import imageEmmaDorsey from '@/images/team/emma-dorsey.jpg'
 import imageJeffreyWebb from '@/images/team/jeffrey-webb.jpg'
 import imageKathrynMurphy from '@/images/team/kathryn-murphy.jpg'
 import imageLeonardKrasner from '@/images/team/leonard-krasner.jpg'
-import imageLeslieAlexander from '@/images/team/leslie-alexander.jpg'
+import imageClay from '@/images/team/clay.jpg'
 import imageMichaelFoster from '@/images/team/michael-foster.jpg'
 import imageWhitneyFrancis from '@/images/team/whitney-francis.jpg'
 import { loadArticles } from '@/lib/mdx'
@@ -61,9 +61,9 @@ const team = [
     title: 'Leadership',
     people: [
       {
-        name: 'Leslie Alexander',
-        role: 'Co-Founder / CEO',
-        image: { src: imageLeslieAlexander },
+        name: 'Dr. Yousef Ahmed, M.D.',
+        role: 'CEO',
+        image: { src: imageClay },
       },
       {
         name: 'Michael Foster',
