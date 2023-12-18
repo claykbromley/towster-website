@@ -1,0 +1,60 @@
+import logo from '@/images/clients/family-fund/logomark-dark.svg'
+import imageHero from './hero.jpg'
+import imageDebraFiscal from './debra-fiscal.jpg'
+
+
+export const caseStudy = {
+  client: 'TOWSTER Pod',
+  title: 'Redefining Battlefield Extraction',
+  description:
+    'TOWSTER Pod is a dual-use, hyperbaric, warming, amphibious medevac pod designed for versatile operational environments.',
+  summary: [
+    'TOWSTER Pod is a dual-use, hyperbaric, warming, amphibious medevac pod designed for versatile operational environments.',
+    'It features prolonged casualty care, hyperbaric therapy, temperature control, mechanical ventilation, comprehensive monitoring, and loitering capability.',
+  ],
+  logo,
+  image: { src: imageHero },
+  date: '2023-01',
+  service: 'TOWSTER Pod',
+  testimonial: {
+    author: { name: 'Debra Fiscal', role: 'CEO of TOWSTER Pod' },
+    content:
+      'Working with Studio, we felt more like a partner than a customer. They really resonated with our mission to redefine battlefield extraction.',
+  },
+}
+
+export const metadata = {
+  title: `${caseStudy.client} Case Study`,
+  description: caseStudy.description,
+}
+
+## Overview
+
+TOWSTER Pod is a patent-pending, dual-use, hyperbaric, warming, amphibious medevac pod. It is designed to be versatile for varied operational environments such as amphibious littoral, ground, arctic, etc. The pod is dual-purpose, serving both tactical and medical logistics during infiltration and exfiltration. It features a compact accordion-like design and is lightweight when deflated. It is adaptable for multiple manned/unmanned transport methods including underwater, aerial, and ground. The pod also transmits vital signs to the receiving platform.
+
+## Advantages
+
+<TagList>
+  <TagListItem>Enhanced oxygen delivery</TagListItem>
+  <TagListItem>Decreased lactate accumulation</TagListItem>
+  <TagListItem>Reduced edema after tourniquet application</TagListItem>
+  <TagListItem>Antibacterial effects</TagListItem>
+  <TagListItem>Hyperbaric oxygen preconditioning</TagListItem>
+  <TagListItem>Improved limb salvageability and tissue preservation</TagListItem>
+  <TagListItem>Mitigation of blast injuries</TagListItem>
+</TagList>
+
+## Research and Development
+
+<Blockquote
+  author={{ name: 'Debra Fiscal', role: 'CEO of TOWSTER Pod' }}
+  image={{ src: imageDebraFiscal }}
+>
+  We have submitted for the JWMRP grant worth $2.3 Million and are awaiting the result in February 2024. We are also submitting for ONR, SOCOM, and DON SBIR grants. Currently, we are at TRL-3 with a goal to reach TRL-8 by 2025.
+</Blockquote>
+
+<StatList>
+  <StatListItem value="$2.3M" label="JWMRP grant" />
+  <StatListItem value="TRL-3" label="Current TRL" />
+  <StatListItem value="TRL-8" label="Goal by 2025" />
+</StatList>
