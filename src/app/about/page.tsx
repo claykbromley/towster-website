@@ -11,15 +11,15 @@ import { PageLinks } from '@/components/PageLinks'
 import { SectionIntro } from '@/components/SectionIntro'
 import { StatList, StatListItem } from '@/components/StatList'
 import imageAngelaFisher from '@/images/team/angela-fisher.jpg'
-import imageBenjaminRussel from '@/images/team/benjamin-russel.jpg'
+import Yousef_Ahmen from '@/images/team/Yousef_Ahmen.jpg'
 import imageBlakeReid from '@/images/team/blake-reid.jpg'
-import imageChelseaHagon from '@/images/team/chelsea-hagon.jpg'
-import imageDriesVincent from '@/images/team/dries-vincent.jpg'
-import imageEmmaDorsey from '@/images/team/emma-dorsey.jpg'
-import imageJeffreyWebb from '@/images/team/jeffrey-webb.jpg'
-import imageKathrynMurphy from '@/images/team/kathryn-murphy.jpg'
+import Andre_Savadjian from '@/images/team/Andre_Savadjian.jpg'
+import Matt_Brendel from '@/images/team/Matt_Brendel.jpg'
+import Rodney_Brenneman from '@/images/team/Rodney_Brenneman.jpg'
+import Jacob_Becker from '@/images/team/Jacob_Becker.jpg'
+import clay from '@/images/team/clay.jpeg'
 import imageLeonardKrasner from '@/images/team/leonard-krasner.jpg'
-import imageClay from '@/images/team/clay.jpg'
+import imageLeslieAlexander from '@/images/team/leslie-alexander.jpg'
 import imageMichaelFoster from '@/images/team/michael-foster.jpg'
 import imageWhitneyFrancis from '@/images/team/whitney-francis.jpg'
 import { loadArticles } from '@/lib/mdx'
@@ -58,72 +58,37 @@ function Culture() {
 
 const team = [
   {
-    title: 'Leadership',
-    people: [
-      {
-        name: 'Dr. Yousef Ahmed, M.D.',
-        role: 'CEO',
-        image: { src: imageClay },
-      },
-      {
-        name: 'Michael Foster',
-        role: 'Co-Founder / CTO',
-        image: { src: imageMichaelFoster },
-      },
-      {
-        name: 'Dries Vincent',
-        role: 'Partner & Business Relations',
-        image: { src: imageDriesVincent },
-      },
-    ],
-  },
-  {
     title: 'Team',
     people: [
       {
-        name: 'Chelsea Hagon',
-        role: 'Senior Developer',
-        image: { src: imageChelseaHagon },
+        name: 'Dr. Yousef Ahmed, M.D.',
+        role: 'Chief Executive Officer',
+        image: { src: Yousef_Ahmen },
       },
       {
-        name: 'Emma Dorsey',
-        role: 'Senior Designer',
-        image: { src: imageEmmaDorsey },
+        name: ' Dr. Andre Savadjian, M.D.',
+        role: 'Chief Operations Officer',
+        image: { src: Andre_Savadjian },
       },
       {
-        name: 'Leonard Krasner',
-        role: 'VP, User Experience',
-        image: { src: imageLeonardKrasner },
+        name: 'Matt Brendel',
+        role: 'Chief Financial Officer',
+        image: { src: Matt_Brendel },
       },
       {
-        name: 'Blake Reid',
-        role: 'Junior Copywriter',
-        image: { src: imageBlakeReid },
+        name: 'Rodney Brenneman',
+        role: 'Business Manager',
+        image: { src: Rodney_Brenneman },
       },
       {
-        name: 'Kathryn Murphy',
-        role: 'VP, Human Resources',
-        image: { src: imageKathrynMurphy },
+        name: 'Clayton Bromley',
+        role: 'Chief Technology Officer',
+        image: { src: clay },
       },
       {
-        name: 'Whitney Francis',
-        role: 'Content Specialist',
-        image: { src: imageWhitneyFrancis },
-      },
-      {
-        name: 'Jeffrey Webb',
-        role: 'Account Coordinator',
-        image: { src: imageJeffreyWebb },
-      },
-      {
-        name: 'Benjamin Russel',
-        role: 'Senior Developer',
-        image: { src: imageBenjaminRussel },
-      },
-      {
-        name: 'Angela Fisher',
-        role: 'Front-end Developer',
-        image: { src: imageAngelaFisher },
+        name: 'Jacob Becker',
+        role: 'Chief of Engineering',
+        image: { src: Jacob_Becker },
       },
     ],
   },
@@ -191,29 +156,19 @@ export default async function About() {
     <>
       <PageIntro eyebrow="About us" title="Our strength is collaboration">
         <p>
-          We believe that our strength lies in our collaborative approach, which
-          puts our clients at the center of everything we do.
+          TOWSTER Corporation was officially formed in September 2023 during the
+          design of the TOWSTER Pod. The founding team, led by CEO Dr. Yousef
+          Ahmed, was assembled in 2023 through various connections in the US
+          Navy. As a Critical Care Anesthesiologist and LCDR USN, Dr. Ahmed
+          first worked on a modified ventilation design before recognizing the
+          benefits of transportable HBOT. The founding team has applied for
+          grant funding and is now working to develop a prototype of the TOWSTER
+          Pod.
         </p>
-        <div className="mt-10 max-w-2xl space-y-6 text-base">
-          <p>
-            Studio was started by three friends who noticed that developer
-            studios were charging clients double what an in-house team would
-            cost. Since the beginning, we have been committed to doing things
-            differently by charging triple instead.
-          </p>
-          <p>
-            At Studio, we’re more than just colleagues — we’re a family. This
-            means we pay very little and expect people to work late. We want our
-            employees to bring their whole selves to work. In return, we just
-            ask that they keep themselves there until at least 6:30pm.
-          </p>
-        </div>
       </PageIntro>
       <Container className="mt-16">
         <StatList>
-          <StatListItem value="35" label="Underpaid employees" />
-          <StatListItem value="52" label="Placated clients" />
-          <StatListItem value="$25M" label="Invoices billed" />
+          <StatListItem value="6" label="Team Size" />
         </StatList>
       </Container>
 
