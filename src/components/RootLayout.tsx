@@ -136,12 +136,12 @@ function Navigation() {
     <nav className="mt-px font-display text-5xl font-medium tracking-tight text-white">
       <NavigationRow>
         <NavigationItem href="/work">Products</NavigationItem>
-        <NavigationItem href="/process">Industries </NavigationItem>
+        {/* <NavigationItem href="/process">Industries </NavigationItem> */}
 
         <NavigationItem href="/about">Company</NavigationItem>
       </NavigationRow>
       <NavigationRow>
-        <NavigationItem href="/blog">Newsroom</NavigationItem>
+        {/* <NavigationItem href="/blog">Newsroom</NavigationItem> */}
       </NavigationRow>
     </nav>
   )

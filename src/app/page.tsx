@@ -21,6 +21,7 @@ import logoUnseal from '@/images/clients/unseal/logo-light.svg'
 import TowsterLogo from '@/images/towster-logo.png'
 import imageLaptop from '@/images/laptop.jpg'
 import { type CaseStudy, type MDXEntry, loadCaseStudies } from '@/lib/mdx'
+import Quote from '@/components/quote'
 //v2
 const clients = [
   ['Phobia', logoPhobiaLight],
@@ -203,6 +204,7 @@ export default async function Home() {
           extension of the medical “golden hour” for injured personnel.
         </p>
       </SectionIntro>
+      <Quote />
 
       {/* <Clients /> */}
 
