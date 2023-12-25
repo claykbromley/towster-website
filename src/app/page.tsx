@@ -187,7 +187,7 @@ export default async function Home() {
 
       <SectionIntro
         title="Meet TOWSTER Pod"
-        className="mt-16 sm:mt-16 lg:mt-40"
+        className="p-30 mb-20 mt-16 rounded-2xl bg-zinc-100  pb-20 pt-20 sm:mt-16 lg:mt-40"
       >
         <p>
           The TOWSTER Pod is revolutionizing amphibious MEDEVAC operations
