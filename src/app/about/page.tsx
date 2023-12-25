@@ -61,12 +61,12 @@ const team = [
     title: 'Team',
     people: [
       {
-        name: 'Dr. Yousef Ahmed, M.D.',
+        name: 'Yousef Ahmed, M.D.',
         role: 'Chief Executive Officer',
         image: { src: Yousef_Ahmen },
       },
       {
-        name: ' Dr. Andre Savadjian, M.D.',
+        name: 'Andre Savadjian, M.D.',
         role: 'Chief Operations Officer',
         image: { src: Andre_Savadjian },
       },

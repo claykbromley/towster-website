@@ -153,7 +153,7 @@ export default async function Work() {
       >
         <p>
           We believe in efficiency and maximizing our resources to provide the
-          best value to our clients.
+          best value .
         </p>
       </PageIntro>
 

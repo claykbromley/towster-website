@@ -190,7 +190,7 @@ export default async function Home() {
         className="mt-16 sm:mt-16 lg:mt-40"
       >
         <p>
-          The TOWSTER Pod is revolutionizing amphibious CASEVAC operations
+          The TOWSTER Pod is revolutionizing amphibious MEDEVAC operations
           through fully autonomous transportation in a controlled, submerged
           environment. Vital tracking and hyperbaric oxygen treatment permit
           extension of the medical “golden hour” for injured personnel.
@@ -210,7 +210,7 @@ export default async function Home() {
 
       {/* <Services /> */}
 
-      {/* <ContactSection /> */}
+      <ContactSection />
     </div>
   )
 }
