@@ -22,6 +22,9 @@ import TowsterLogo from '@/images/towster-logo.png'
 import imageLaptop from '@/images/laptop.jpg'
 import { type CaseStudy, type MDXEntry, loadCaseStudies } from '@/lib/mdx'
 import Quote from '@/components/quote'
+import { loadArticles } from '@/lib/mdx'
+import { PageLinks } from '@/components/PageLinks'
+
 //v2
 const clients = [
   ['Phobia', logoPhobiaLight],
@@ -70,18 +73,6 @@ function CaseStudies({
 }) {
   return (
     <div>
-      <SectionIntro
-        title="Meet TOWSTER Pod"
-        className="mt-24 sm:mt-32 lg:mt-40"
-      >
-        <p>
-          The TOWSTER Pod is revolutionizing amphibious CASEVAC operations
-          through fully autonomous transportation in a controlled, submerged
-          environment. Vital tracking and hyperbaric oxygen treatment permit
-          extension of the medical “golden hour” for injured personnel.
-        </p>
-      </SectionIntro>
-
       <Container className="mt-16">
         <FadeInStagger className="grid grid-cols-1 gap-8 lg:grid-cols-3">
           {caseStudies.map((caseStudy) => (
@@ -108,7 +99,7 @@ function CaseStudies({
                   <span className="text-neutral-300" aria-hidden="true">
                     /
                   </span>
-                  <span>Case study</span>
+                  <span>Our work</span>
                 </p>
                 <p className="mt-6 font-display text-2xl font-semibold text-neutral-950">
                   {caseStudy.title}
@@ -168,11 +159,12 @@ function Services() {
 
 export const metadata: Metadata = {
   description:
-    'We are a development studio working at the intersection of design and technology.',
+    'Towster Corporation is specializing in innovative medical technology, specifically in creating automated mission critical solutions for critical care scenarios.',
 }
 
 export default async function Home() {
   let caseStudies = (await loadCaseStudies()).slice(0, 3)
+  let blogArticles = (await loadArticles()).slice(0, 1)
 
   return (
     <div>
@@ -208,7 +200,13 @@ export default async function Home() {
 
       {/* <Clients /> */}
 
-      {/* <CaseStudies caseStudies={caseStudies} /> */}
+      <CaseStudies caseStudies={caseStudies} />
+      <PageLinks
+        className="mt-24 sm:mt-32 lg:mt-40"
+        title="From the newsroom"
+        intro="Latest news and article from Towster Corporation"
+        pages={blogArticles}
+      />
 
       {/* <Services /> */}
 

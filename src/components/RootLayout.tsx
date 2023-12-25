@@ -141,7 +141,7 @@ function Navigation() {
         <NavigationItem href="/about">Company</NavigationItem>
       </NavigationRow>
       <NavigationRow>
-        {/* <NavigationItem href="/blog">Newsroom</NavigationItem> */}
+        <NavigationItem href="/blog">Newsroom</NavigationItem>
       </NavigationRow>
     </nav>
   )

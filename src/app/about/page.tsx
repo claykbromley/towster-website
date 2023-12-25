@@ -150,11 +150,11 @@ export const metadata: Metadata = {
 }
 
 export default async function About() {
-  let blogArticles = (await loadArticles()).slice(0, 2)
+  let blogArticles = (await loadArticles()).slice(0, 1)
 
   return (
     <>
-      <PageIntro eyebrow="About us" title="Our strength is collaboration">
+      <PageIntro eyebrow="About us" title="Our strength is our experience">
         <p>
           TOWSTER Corporation was officially formed in September 2023 during the
           design of the TOWSTER Pod. The founding team, led by CEO Dr. Yousef
@@ -168,20 +168,20 @@ export default async function About() {
       </PageIntro>
       <Container className="mt-16">
         <StatList>
-          <StatListItem value="6" label="Team Size" />
+          <StatListItem value="13" label="Team Size" />
         </StatList>
       </Container>
 
-      <Culture />
+      {/* <Culture /> */}
 
       <Team />
 
-      {/* <PageLinks
+      <PageLinks
         className="mt-24 sm:mt-32 lg:mt-40"
-        title="From the blog"
-        intro="Our team of experienced designers and developers has just one thing on their mind; working on your ideas to draw a smile on the face of your users worldwide. From conducting Brand Sprints to UX Design."
+        title="From the newsroom"
+        intro="Latest news and article from Towster Corporation"
         pages={blogArticles}
-      /> */}
+      />
 
       <ContactSection />
     </>
