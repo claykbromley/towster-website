@@ -1,6 +1,6 @@
-# Towster
+# TOWSTER
 
-Towster is a website built using [Tailwind CSS](https://tailwindcss.com) and [Next.js](https://nextjs.org).
+TOWSTER is a website built using [Tailwind CSS](https://tailwindcss.com) and [Next.js](https://nextjs.org).
 
 ## Getting started
 

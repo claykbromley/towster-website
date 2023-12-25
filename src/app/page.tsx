@@ -18,7 +18,7 @@ import logoNorthAdventures from '@/images/clients/north-adventures/logo-light.sv
 import logoPhobiaDark from '@/images/clients/phobia/logo-dark.svg'
 import logoPhobiaLight from '@/images/clients/phobia/logo-light.svg'
 import logoUnseal from '@/images/clients/unseal/logo-light.svg'
-import TowsterLogo from '@/images/towster-logo.png'
+import TOWSTERLogo from '@/images/TOWSTER-logo.png'
 import imageLaptop from '@/images/laptop.jpg'
 import { type CaseStudy, type MDXEntry, loadCaseStudies } from '@/lib/mdx'
 import Quote from '@/components/quote'
@@ -159,7 +159,7 @@ function Services() {
 
 export const metadata: Metadata = {
   description:
-    'Towster Corporation is specializing in innovative medical technology, specifically in creating automated mission critical solutions for critical care scenarios.',
+    'TOWSTER Corporation is specializing in innovative medical technology, specifically in creating automated mission critical solutions for critical care scenarios.',
 }
 
 export default async function Home() {
@@ -174,7 +174,7 @@ export default async function Home() {
             Mobile Hyperbaric Solutions
           </h1>
           <p className="mt-6 text-xl text-neutral-600">
-            Towster Corporation is specializing in innovative medical
+            TOWSTER Corporation is specializing in innovative medical
             technology, specifically in creating automated mission critical
             solutions for critical care scenarios. Our team is accustomed to
             navigating the complex and dynamic field of medical tech
@@ -204,7 +204,7 @@ export default async function Home() {
       <PageLinks
         className="mt-24 sm:mt-32 lg:mt-40"
         title="From the newsroom"
-        intro="Latest news and article from Towster Corporation"
+        intro="Latest news and article from TOWSTER Corporation"
         pages={blogArticles}
       />
 

@@ -6,8 +6,8 @@ import '@/styles/tailwind.css'
 
 export const metadata: Metadata = {
   title: {
-    template: '%s - Towster',
-    default: 'Towster',
+    template: '%s - TOWSTER',
+    default: 'TOWSTER',
   },
 }
 

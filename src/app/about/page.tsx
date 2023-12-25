@@ -179,7 +179,7 @@ export default async function About() {
       <PageLinks
         className="mt-24 sm:mt-32 lg:mt-40"
         title="From the newsroom"
-        intro="Latest news and article from Towster Corporation"
+        intro="Latest news and article from TOWSTER Corporation"
         pages={blogArticles}
       />
 

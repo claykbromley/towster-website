@@ -103,7 +103,7 @@ function ContactDetails() {
           Email us
         </h2>
         <dl className="mt-6 grid grid-cols-1 gap-8 text-sm sm:grid-cols-2">
-          {[['Contact', 'yousef.ahmed@towstercorp.com']].map(
+          {[['Contact', 'yousef.ahmed@TOWSTERcorp.com']].map(
             ([label, email]) => (
               <div key={email}>
                 <dt className="font-semibold text-neutral-950">{label}</dt>

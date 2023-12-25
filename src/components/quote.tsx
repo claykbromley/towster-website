@@ -22,7 +22,7 @@ export default function Quote() {
               <p>
                 When mission planning, considering environmental factors plays a
                 key role in operational success. Few factors are less forgiving
-                than the ocean or high altitude. Towster provides the capability
+                than the ocean or high altitude. TOWSTER provides the capability
                 to safely navigate patients through the most challenging
                 environments in the world
               </p>

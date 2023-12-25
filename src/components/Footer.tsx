@@ -4,7 +4,7 @@ import { Container } from '@/components/Container'
 import { FadeIn } from '@/components/FadeIn'
 import { Logo } from '@/components/Logo'
 import { socialMediaProfiles } from '@/components/SocialMedia'
-import TowsterLogo from '@/images/towster-logo.png'
+import TOWSTERLogo from '@/images/TOWSTER-logo.png'
 
 const navigation = [
   {
@@ -121,7 +121,7 @@ export function Footer() {
         </div>
         <div className="mb-20 mt-24 flex flex-wrap items-end justify-between gap-x-6 gap-y-4 border-t border-neutral-950/10 pt-12">
           <p className="text-sm text-neutral-700">
-            @ Towster Corporation. {new Date().getFullYear()}
+            @ TOWSTER Corporation. {new Date().getFullYear()}
           </p>
         </div>
       </FadeIn>
