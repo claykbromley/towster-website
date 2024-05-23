@@ -50,6 +50,11 @@ const team = [
         role: 'Chief of Engineering',
         image: { src: Jacob_Becker },
       },
+      {
+        name: 'Test Member',
+        role: 'Chief of Engineering',
+        image: { src: Jacob_Becker },
+      },
     ],
   },
 ]
@@ -70,9 +75,9 @@ function Team() {
               <div className="lg:col-span-3">
                 <ul
                   role="list"
-                  className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:gap-8"
+                  className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-8"
                 >
-                  {group.people.map((person) => (
+                  {group.people.map((person, index) => (
                     <li key={person.name}>
                       <FadeIn>
                         <div className="group relative overflow-hidden rounded-3xl bg-neutral-100">
