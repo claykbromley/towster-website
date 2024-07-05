@@ -8,7 +8,7 @@ import { FadeIn, FadeInStagger } from '@/components/FadeIn'
 import { PageIntro } from '@/components/PageIntro'
 import { PageLinks } from '@/components/PageLinks'
 import { StatList, StatListItem } from '@/components/StatList'
-import Yousef_Ahmed from '@/images/team/Yousef_Ahmed.jpg'
+import Yousef_Ahmed from '@/images/team/Towster Corporation Icon.svg'
 import Andre_Savadjian from '@/images/team/Andre_Savadjian.jpg'
 import Matt_Brendel from '@/images/team/Matt_Brendel.jpg'
 import Rodney_Brenneman from '@/images/team/Rodney_Brenneman.jpg'
@@ -22,12 +22,12 @@ const team = [
     people: [
       {
         name: 'Yousef Ahmed, M.D.',
-        role: 'Chief Executive Officer',
+        role: 'Co-Founder/CEO',
         image: { src: Yousef_Ahmed },
       },
       {
         name: 'Andre Savadjian, M.D.',
-        role: 'Chief Operations Officer',
+        role: 'Co-Founder/COO',
         image: { src: Andre_Savadjian },
       },
       {
@@ -42,17 +42,12 @@ const team = [
       },
       {
         name: 'Clayton Bromley',
-        role: 'Chief Technology Officer',
+        role: 'Co-Founder/Technical Advisor',
         image: { src: Clayton_Bromley },
       },
       {
         name: 'Jacob Becker',
-        role: 'Chief of Engineering',
-        image: { src: Jacob_Becker },
-      },
-      {
-        name: 'Test Member',
-        role: 'Chief of Engineering',
+        role: 'Co-Founder/Technical Advisor',
         image: { src: Jacob_Becker },
       },
     ],
@@ -75,7 +70,7 @@ function Team() {
               <div className="lg:col-span-3">
                 <ul
                   role="list"
-                  className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-8"
+                  className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:gap-8"
                 >
                   {group.people.map((person, index) => (
                     <li key={person.name}>
@@ -87,10 +82,10 @@ function Team() {
                             className="h-96 w-full object-cover grayscale transition duration-500 motion-safe:group-hover:scale-105"
                           />
                           <div className="absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-black to-black/0 to-40% p-6">
-                            <p className="font-display text-base/6 font-semibold tracking-wide text-white">
+                            <p className="font-display text-base/6 font-semibold tracking-wide text-white text-center">
                               {person.name}
                             </p>
-                            <p className="mt-2 text-sm text-white">
+                            <p className="mt-2 text-sm text-white text-center">
                               {person.role}
                             </p>
                           </div>
