@@ -119,7 +119,7 @@ export default async function About() {
           TOWSTER Corporation was officially formed in September 2023 during the
           design of the TOWSTER Pod. The founding team, led by CEO Dr. Yousef
           Ahmed, was assembled in 2023 through various connections in the US
-          Navy. As a Critical Care Anesthesiologist and LCDR USN, Dr. Ahmed
+          Navy. As a Critical Care Anesthesiologist, Dr. Ahmed
           first worked on a modified ventilation design before recognizing the
           benefits of transportable HBOT. The founding team has applied for
           grant funding and is now working to develop a prototype of the TOWSTER
