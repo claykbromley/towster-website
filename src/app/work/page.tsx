@@ -10,6 +10,7 @@ import { FadeIn } from '@/components/FadeIn'
 import { PageIntro } from '@/components/PageIntro'
 import { formatDate } from '@/lib/formatDate'
 import { type CaseStudy, type MDXEntry, loadCaseStudies } from '@/lib/mdx'
+import { Testimonial } from '@/components/Testimonial'
 
 function CaseStudies({
   caseStudies,
@@ -36,14 +37,14 @@ function CaseStudies({
                       className="h-16 w-16 flex-none"
                       unoptimized
                     /> */}
-                    <h3 className="mt-6 text-sm font-semibold text-neutral-950 sm:mt-0 lg:mt-8">
+                    {<h3 className="mt-6 text-sm font-semibold text-neutral-950 sm:mt-0 lg:mt-8">
                       {caseStudy.client}
-                    </h3>
+                  </h3>}
                   </div>
                   <div className="mt-1 flex gap-x-4 sm:mt-0 lg:block">
-                    <p className="text-sm tracking-tight text-neutral-950 after:ml-4 after:font-semibold after:text-neutral-300 after:content-['/'] lg:mt-2 lg:after:hidden">
+                    {/*<p className="text-sm tracking-tight text-neutral-950 after:ml-4 after:font-semibold after:text-neutral-300 after:content-['/'] lg:mt-2 lg:after:hidden">
                       {caseStudy.service}
-                    </p>
+                  </p/> */}
                     <p className="text-sm text-neutral-950 lg:mt-2">
                       <time dateTime={caseStudy.date}>
                         {formatDate(caseStudy.date)}
@@ -101,10 +102,20 @@ export default async function Work() {
         eyebrow="Our work"
         title="Proven solutions for real-world problems."
       >
-        <p>
+        <p className="padding-bottom: 20px;">
           We believe in efficiency and maximizing our resources to provide the
           best value .
         </p>
+
+        <div className="video-responsive" style={{ paddingTop: '20px' }}>
+        <iframe
+          width="853"
+          height="480"
+          src="https://www.youtube.com/embed/G2zKD8OCK1o"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          title="YouTube video"
+        ></iframe>
+        </div>
       </PageIntro>
 
       <CaseStudies caseStudies={caseStudies} />

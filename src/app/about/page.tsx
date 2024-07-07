@@ -8,7 +8,7 @@ import { FadeIn, FadeInStagger } from '@/components/FadeIn'
 import { PageIntro } from '@/components/PageIntro'
 import { PageLinks } from '@/components/PageLinks'
 import { StatList, StatListItem } from '@/components/StatList'
-import Yousef_Ahmed from '@/images/team/Yousef_Ahmed.jpg'
+import Yousef_Ahmed from '@/images/team/Towster Corporation Icon.svg'
 import Andre_Savadjian from '@/images/team/Andre_Savadjian.jpg'
 import Matt_Brendel from '@/images/team/Matt_Brendel.jpg'
 import Rodney_Brenneman from '@/images/team/Rodney_Brenneman.jpg'
@@ -22,12 +22,12 @@ const team = [
     people: [
       {
         name: 'Yousef Ahmed, M.D.',
-        role: 'Chief Executive Officer',
+        role: 'Co-Founder/CEO',
         image: { src: Yousef_Ahmed },
       },
       {
         name: 'Andre Savadjian, M.D.',
-        role: 'Chief Operations Officer',
+        role: 'Co-Founder/COO',
         image: { src: Andre_Savadjian },
       },
       {
@@ -42,12 +42,12 @@ const team = [
       },
       {
         name: 'Clayton Bromley',
-        role: 'Chief Technology Officer',
+        role: 'Co-Founder/Technical Advisor',
         image: { src: Clayton_Bromley },
       },
       {
         name: 'Jacob Becker',
-        role: 'Chief of Engineering',
+        role: 'Co-Founder/Technical Advisor',
         image: { src: Jacob_Becker },
       },
     ],
@@ -72,7 +72,7 @@ function Team() {
                   role="list"
                   className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:gap-8"
                 >
-                  {group.people.map((person) => (
+                  {group.people.map((person, index) => (
                     <li key={person.name}>
                       <FadeIn>
                         <div className="group relative overflow-hidden rounded-3xl bg-neutral-100">
@@ -82,10 +82,10 @@ function Team() {
                             className="h-96 w-full object-cover grayscale transition duration-500 motion-safe:group-hover:scale-105"
                           />
                           <div className="absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-black to-black/0 to-40% p-6">
-                            <p className="font-display text-base/6 font-semibold tracking-wide text-white">
+                            <p className="font-display text-base/6 font-semibold tracking-wide text-white text-center">
                               {person.name}
                             </p>
-                            <p className="mt-2 text-sm text-white">
+                            <p className="mt-2 text-sm text-white text-center">
                               {person.role}
                             </p>
                           </div>
@@ -119,7 +119,7 @@ export default async function About() {
           TOWSTER Corporation was officially formed in September 2023 during the
           design of the TOWSTER Pod. The founding team, led by CEO Dr. Yousef
           Ahmed, was assembled in 2023 through various connections in the US
-          Navy. As a Critical Care Anesthesiologist and LCDR USN, Dr. Ahmed
+          Navy. As a Critical Care Anesthesiologist, Dr. Ahmed
           first worked on a modified ventilation design before recognizing the
           benefits of transportable HBOT. The founding team has applied for
           grant funding and is now working to develop a prototype of the TOWSTER

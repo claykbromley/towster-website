@@ -29,7 +29,7 @@ function CaseStudies({
                     <Image
                       src={caseStudy.logo}
                       alt={caseStudy.client}
-                      className="h-16 w-16"
+                      className=""
                       unoptimized
                     />
                   </Link>
@@ -44,7 +44,7 @@ function CaseStudies({
                   <span className="text-neutral-300" aria-hidden="true">
                     /
                   </span>
-                  <span>Our work</span>
+                  <span>Products</span>
                 </p>
                 <p className="mt-6 font-display text-2xl font-semibold text-neutral-950">
                   {caseStudy.title}
@@ -68,7 +68,7 @@ export const metadata: Metadata = {
 
 export default async function Home() {
   let caseStudies = (await loadCaseStudies()).slice(0, 3)
-  let blogArticles = (await loadArticles()).slice(0, 1)
+  let blogArticles = (await loadArticles()).slice(0, 2)
 
   return (
     <div>
