@@ -26,12 +26,12 @@ function CaseStudies({
                 <h3>
                   <Link href={caseStudy.href}>
                     <span className="absolute inset-0 rounded-3xl" />
-                    <Image
+                    {/*<Image
                       src={caseStudy.logo}
                       alt={caseStudy.client}
                       className=""
                       unoptimized
-                    />
+                    /> */}
                   </Link>
                 </h3>
                 <p className="mt-6 flex gap-x-2 text-sm text-neutral-950">
@@ -105,12 +105,15 @@ export default async function Home() {
       {/* <Clients /> */}
 
       <CaseStudies caseStudies={caseStudies} />
+
+      {/*
       <PageLinks
         className="mt-24 sm:mt-32 lg:mt-40"
         title="From the newsroom"
         intro="Latest news and article from TOWSTER Corporation"
         pages={blogArticles}
       />
+      */}
 
       {/* <Services /> */}
 

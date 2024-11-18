@@ -8,7 +8,7 @@ import { FadeIn, FadeInStagger } from '@/components/FadeIn'
 import { PageIntro } from '@/components/PageIntro'
 import { PageLinks } from '@/components/PageLinks'
 import { StatList, StatListItem } from '@/components/StatList'
-import Yousef_Ahmed from '@/images/team/Towster Corporation Icon.svg'
+import Yousef_Ahmed from '@/images/team/Yousef_Ahmed.jpg'
 import Andre_Savadjian from '@/images/team/Andre_Savadjian.jpg'
 import Matt_Brendel from '@/images/team/Matt_Brendel.jpg'
 import Rodney_Brenneman from '@/images/team/Rodney_Brenneman.jpg'
@@ -133,12 +133,14 @@ export default async function About() {
 
       <Team />
 
+      {/*
       <PageLinks
         className="mt-24 sm:mt-32 lg:mt-40"
         title="From the newsroom"
         intro="Latest news and article from TOWSTER Corporation"
         pages={blogArticles}
       />
+      */}
 
       <ContactSection />
     </>

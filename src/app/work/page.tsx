@@ -45,11 +45,11 @@ function CaseStudies({
                     {/*<p className="text-sm tracking-tight text-neutral-950 after:ml-4 after:font-semibold after:text-neutral-300 after:content-['/'] lg:mt-2 lg:after:hidden">
                       {caseStudy.service}
                   </p/> */}
-                    <p className="text-sm text-neutral-950 lg:mt-2">
+                    {/*<p className="text-sm text-neutral-950 lg:mt-2">
                       <time dateTime={caseStudy.date}>
                         {formatDate(caseStudy.date)}
                       </time>
-                    </p>
+                    </p> */}
                   </div>
                 </div>
                 <div className="col-span-full lg:col-span-2 lg:max-w-2xl">
