@@ -100,7 +100,7 @@ export default async function Home() {
           extension of the medical “golden hour” for injured personnel.
         </p>
       </SectionIntro>
-      <Quote />
+      {/* <Quote /> */}
 
       {/* <Clients /> */}
 
