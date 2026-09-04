@@ -41,7 +41,7 @@ function Header({
   icon: React.ComponentType<{ className?: string }>
   expanded: boolean
   onToggle: () => void
-  toggleRef: React.RefObject<HTMLButtonElement | null>
+  toggleRef: React.RefObject<HTMLButtonElement>
   invert?: boolean
 }) {
   return (
@@ -152,10 +152,6 @@ function Navigation() {
           Contact
         </NavigationItem>
       </NavigationRow>
-      {/* Newsroom stays out until there are articles — see README-UPGRADE.md.
-      <NavigationRow>
-        <NavigationItem href="/blog">Newsroom</NavigationItem>
-      </NavigationRow> */}
     </nav>
   )
 }
