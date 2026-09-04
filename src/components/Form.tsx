@@ -1,143 +1,216 @@
 'use client'
-import './styles.css'
-import React, { useState } from 'react'
 
-export default function BasicFormData() {
-  const [name, setName] = useState('')
-  const [email, setEmail] = useState('')
-  const [message, setMessage] = useState('')
+import { useId, useState } from 'react'
+import { useSearchParams } from 'next/navigation'
 
-  const [error, setError] = useState('')
-  const [submitted, setSubmitted] = useState(false)
+import { Button } from '@/components/Button'
+import { FadeIn } from '@/components/FadeIn'
+import { inquiryTypes, type InquiryTypeId } from '@/lib/siteConfig'
 
-  function resetStates() {
-    setSubmitted(false)
-    setError('')
-  }
+function Field({
+  label,
+  children,
+  labelClassName = '',
+}: {
+  label: string
+  children: (props: { id: string }) => React.ReactNode
+  labelClassName?: string
+}) {
+  const id = useId()
 
-  function resetForm() {
-    setName('')
-    setEmail('')
-    setMessage('')
-  }
+  return (
+    <div className="group relative z-0 transition-all focus-within:z-10">
+      {children({ id })}
+      <label
+        htmlFor={id}
+        className={`pointer-events-none absolute left-6 top-1/2 -mt-3 origin-left text-base/6 text-neutral-500 transition-all duration-200 peer-focus:-translate-y-4 peer-focus:scale-75 peer-focus:font-semibold peer-focus:text-neutral-950 peer-[:not(:placeholder-shown)]:-translate-y-4 peer-[:not(:placeholder-shown)]:scale-75 peer-[:not(:placeholder-shown)]:font-semibold peer-[:not(:placeholder-shown)]:text-neutral-950 ${labelClassName}`}
+      >
+        {label}
+      </label>
+    </div>
+  )
+}
 
-  function onSubmit(e: any) {
-    e.preventDefault()
-    e.stopPropagation()
+const inputClasses =
+  'peer block w-full border border-neutral-300 bg-transparent px-6 pb-4 pt-12 text-base/6 text-neutral-950 ring-4 ring-transparent transition focus:border-neutral-950 focus:outline-none focus:ring-neutral-950/5 group-first:rounded-t-2xl group-last:rounded-b-2xl'
 
-    resetStates()
+function TextInput({
+  label,
+  ...props
+}: React.ComponentPropsWithoutRef<'input'> & { label: string }) {
+  return (
+    <Field label={label}>
+      {({ id }) => (
+        <input type="text" id={id} placeholder=" " {...props} className={inputClasses} />
+      )}
+    </Field>
+  )
+}
 
-    let formData = new FormData()
-    formData.append('name', name)
-    formData.append('email', email)
-    formData.append('message', message)
+function TextArea({
+  label,
+  ...props
+}: React.ComponentPropsWithoutRef<'textarea'> & { label: string }) {
+  return (
+    <Field label={label} labelClassName="top-12">
+      {({ id }) => (
+        <textarea
+          id={id}
+          rows={5}
+          placeholder=" "
+          {...props}
+          className={inputClasses}
+        />
+      )}
+    </Field>
+  )
+}
 
-    fetch('https://formcarry.com/s/Yr4xVANckL', {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-      },
-      body: formData,
-    })
-      .then((response) => response.json())
-      .then((response) => {
-        if (response.code === 200) {
-          setSubmitted(true)
-          resetForm()
-        } else if (response.code === 422) {
-          setError(response.message)
-        } else {
-          setError(response.message)
-        }
+type Status =
+  | { state: 'idle' }
+  | { state: 'sending' }
+  | { state: 'sent' }
+  | { state: 'error'; message: string }
+
+export default function Form() {
+  const searchParams = useSearchParams()
+  const preselected = searchParams.get('inquiry') as InquiryTypeId | null
+  const [status, setStatus] = useState<Status>({ state: 'idle' })
+  const selectId = useId()
+
+  async function onSubmit(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault()
+    const form = event.currentTarget
+    const data = Object.fromEntries(new FormData(form).entries())
+
+    setStatus({ state: 'sending' })
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
       })
-      .catch((error) => {
-        setError(error.message ? error.message : error)
+      const body = await response.json().catch(() => ({}))
+      if (!response.ok) {
+        throw new Error(
+          body.error ?? 'The message didn’t send. Try again in a moment.',
+        )
+      }
+      setStatus({ state: 'sent' })
+      form.reset()
+    } catch (error) {
+      setStatus({
+        state: 'error',
+        message:
+          error instanceof Error
+            ? error.message
+            : 'The message didn’t send. Try again in a moment.',
       })
+    }
   }
 
-  const showNotification = submitted || error
-
-  function renderStatus() {
-    let message = error
-      ? error
-      : `Thanks for reaching out!, we'll get back to you soon.`
-    let icon = error ? 'error' : 'success'
-
+  if (status.state === 'sent') {
     return (
-      <div className="formcarry-block">
-        <div className={`formcarry-message-block fc-${icon} active`}>
-          <div className="fc-message-icon"></div>
-          <div className="fc-message-content">{message}</div>
-          <div className="fc-message-close" onClick={() => resetStates()}></div>
+      <FadeIn>
+        <div className="rounded-3xl bg-neutral-50 p-8 ring-1 ring-neutral-950/5">
+          <h2 className="font-display text-2xl font-semibold text-neutral-950">
+            Message sent
+          </h2>
+          <p className="mt-4 text-base text-neutral-600">
+            It’s with the right people on our team. Expect a reply within two
+            business days.
+          </p>
+          <button
+            type="button"
+            onClick={() => setStatus({ state: 'idle' })}
+            className="mt-6 text-sm font-semibold text-neutral-950 underline-offset-4 hover:underline"
+          >
+            Send another message
+          </button>
         </div>
-      </div>
+      </FadeIn>
     )
   }
 
   return (
-    <div className="formcarry-container mx-auto max-w-sm items-center space-x-4 rounded-xl bg-white p-6">
-      <form onSubmit={(e) => onSubmit(e)}>
-        <div className="formcarry-block mb-4">
-          <label
-            htmlFor="name"
-            className="mb-2 block text-sm font-bold text-gray-700"
-          >
-            Full Name
-          </label>
-          <input
-            type="text"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            id="name"
-            placeholder="Your first and last name"
-            className="focus:shadow-outline w-full appearance-none rounded border px-3 py-2 leading-tight text-gray-700 shadow focus:outline-none"
-          />
-        </div>
+    <FadeIn className="lg:order-last">
+      <form onSubmit={onSubmit} noValidate>
+        <h2 className="font-display text-base font-semibold text-neutral-950">
+          Send us a message
+        </h2>
 
-        <div className="formcarry-block mb-4">
-          <label
-            htmlFor="email"
-            className="mb-2 block text-sm font-bold text-gray-700"
-          >
-            Your Email Address
-          </label>
-          <input
+        <div className="isolate mt-6 -space-y-px rounded-2xl bg-white/50">
+          <TextInput label="Name" name="name" autoComplete="name" required />
+          <TextInput
+            label="Email"
             type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            id="email"
-            placeholder="john@doe.com"
-            className="focus:shadow-outline w-full appearance-none rounded border px-3 py-2 leading-tight text-gray-700 shadow focus:outline-none"
+            name="email"
+            autoComplete="email"
+            required
+          />
+          <TextInput
+            label="Organization"
+            name="organization"
+            autoComplete="organization"
+          />
+
+          <div className="group relative z-0 border border-neutral-300 px-6 pb-4 pt-8 transition-all focus-within:z-10">
+            <label
+              htmlFor={selectId}
+              className="block text-sm font-semibold text-neutral-950"
+            >
+              What’s this about?
+            </label>
+            <select
+              id={selectId}
+              name="inquiryType"
+              defaultValue={preselected ?? 'general'}
+              className="mt-2 block w-full border-0 bg-transparent p-0 text-base/6 text-neutral-950 focus:outline-none focus:ring-0"
+            >
+              {inquiryTypes.map((type) => (
+                <option key={type.id} value={type.id}>
+                  {type.label}
+                </option>
+              ))}
+            </select>
+            <p className="mt-2 text-sm text-neutral-500">
+              This decides who on the team gets your message first.
+            </p>
+          </div>
+
+          <TextArea label="Message" name="message" required />
+        </div>
+
+        {/* Spam trap. Real people never see or fill this. */}
+        <div aria-hidden="true" className="absolute -left-[9999px] h-0 w-0 overflow-hidden">
+          <label htmlFor="website-url">Leave this field empty</label>
+          <input
+            id="website-url"
+            type="text"
+            name="website"
+            tabIndex={-1}
+            autoComplete="off"
           />
         </div>
 
-        <div className="formcarry-block mb-4">
-          <label
-            htmlFor="message"
-            className="mb-2 block text-sm font-bold text-gray-700"
-          >
-            Your message
-          </label>
-          <textarea
-            value={message}
-            onChange={(e) => setMessage(e.target.value)}
-            id="message"
-            placeholder="Enter your message..."
-            className="focus:shadow-outline w-full appearance-none rounded border px-3 py-2 leading-tight text-gray-700 shadow focus:outline-none"
-          ></textarea>
-        </div>
+        <p className="mt-6 text-sm text-neutral-500">
+          Don’t send export-controlled or classified information through this
+          form. For controlled technical discussion, ask us for an NDA first.
+        </p>
 
-        <div className="formcarry-block">
-          <button
-            type="submit"
-            className="focus:shadow-outline rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700 focus:outline-none"
+        {status.state === 'error' ? (
+          <p
+            role="alert"
+            className="mt-6 rounded-2xl bg-red-50 px-4 py-3 text-sm text-red-900"
           >
-            Send
-          </button>
-        </div>
+            {status.message}
+          </p>
+        ) : null}
 
-        {showNotification && renderStatus()}
+        <Button type="submit" className="mt-10" disabled={status.state === 'sending'}>
+          {status.state === 'sending' ? 'Sending…' : 'Send message'}
+        </Button>
       </form>
-    </div>
+    </FadeIn>
   )
 }

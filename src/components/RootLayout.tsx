@@ -1,13 +1,7 @@
 'use client'
+
 import Image from 'next/image'
-import {
-  createContext,
-  useContext,
-  useEffect,
-  useId,
-  useRef,
-  useState,
-} from 'react'
+import { useEffect, useId, useRef, useState } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import clsx from 'clsx'
@@ -17,15 +11,6 @@ import { Button } from '@/components/Button'
 import { Container } from '@/components/Container'
 import { Footer } from '@/components/Footer'
 import { GridPattern } from '@/components/GridPattern'
-import { Logo, Logomark } from '@/components/Logo'
-import { Offices } from '@/components/Offices'
-import { SocialMedia } from '@/components/SocialMedia'
-import TowsterLogo from '@/images/towster-logo.png'
-
-const RootLayoutContext = createContext<{
-  logoHovered: boolean
-  setLogoHovered: React.Dispatch<React.SetStateAction<boolean>>
-} | null>(null)
 
 function XIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
   return (
@@ -56,21 +41,21 @@ function Header({
   icon: React.ComponentType<{ className?: string }>
   expanded: boolean
   onToggle: () => void
-  toggleRef: React.RefObject<HTMLButtonElement>
+  toggleRef: React.RefObject<HTMLButtonElement | null>
   invert?: boolean
 }) {
-  let { logoHovered, setLogoHovered } = useContext(RootLayoutContext)!
-
   return (
     <Container>
       <div className="flex items-center justify-between">
-        <Link
-          href="/"
-          aria-label="Home"
-          onMouseEnter={() => setLogoHovered(true)}
-          onMouseLeave={() => setLogoHovered(false)}
-        >
-          <Image className="w-60" src={TowsterLogo} alt="Towster Logo" />
+        <Link href="/" aria-label="TOWSTER Corporation, home">
+          <Image
+            className="w-60 h-auto"
+            src="/towster-logo.png"
+            alt="TOWSTER Corporation"
+            priority
+            width={1200}
+            height={400}
+          />
         </Link>
         <div className="flex items-center gap-x-8">
           <Button href="/contact" invert={invert}>
@@ -86,7 +71,7 @@ function Header({
               'group -m-2.5 rounded-full p-2.5 transition',
               invert ? 'hover:bg-white/10' : 'hover:bg-neutral-950/10',
             )}
-            aria-label="Toggle navigation"
+            aria-label={expanded ? 'Close navigation' : 'Open navigation'}
           >
             <Icon
               className={clsx(
@@ -116,31 +101,59 @@ function NavigationRow({ children }: { children: React.ReactNode }) {
 function NavigationItem({
   href,
   children,
+  description,
 }: {
   href: string
   children: React.ReactNode
+  description?: string
 }) {
+  let pathname = usePathname()
+  let current = pathname === href || pathname.startsWith(`${href}/`)
+
   return (
     <Link
       href={href}
+      aria-current={current ? 'page' : undefined}
       className="group relative isolate -mx-6 bg-neutral-950 px-6 py-10 even:mt-px sm:mx-0 sm:px-0 sm:py-16 sm:odd:pr-16 sm:even:mt-0 sm:even:border-l sm:even:border-neutral-800 sm:even:pl-16"
     >
-      {children}
+      <span className={clsx(current && 'text-white/60')}>{children}</span>
+      {description ? (
+        <span className="mt-3 block max-w-sm font-sans text-base font-normal tracking-normal text-neutral-400">
+          {description}
+        </span>
+      ) : null}
       <span className="absolute inset-y-0 -z-10 w-screen bg-neutral-900 opacity-0 transition group-odd:right-0 group-even:left-0 group-hover:opacity-100" />
     </Link>
   )
 }
 
+/**
+ * Items come in pairs — the grid is two columns and the odd/even selectors
+ * above handle the divider and hover fill. Adding an odd number of items
+ * leaves a visible half-empty row, which is what the single "Products" item
+ * was doing before.
+ */
 function Navigation() {
   return (
     <nav className="mt-px font-display text-5xl font-medium tracking-tight text-white">
       <NavigationRow>
-        <NavigationItem href="/work">Products</NavigationItem>
-        {/* <NavigationItem href="/process">Industries </NavigationItem> */}
-
-        {/*<NavigationItem href="/about">Company</NavigationItem>*/}
+        <NavigationItem href="/work" description="Specifications and configurations">
+          The System
+        </NavigationItem>
+        <NavigationItem href="/media" description="Video, briefings, and the overview deck">
+          Media
+        </NavigationItem>
       </NavigationRow>
-      {/*<NavigationRow>
+      <NavigationRow>
+        <NavigationItem href="/about" description="Who builds it and why">
+          Company
+        </NavigationItem>
+        <NavigationItem href="/contact" description="Program, partnership, or press">
+          Contact
+        </NavigationItem>
+      </NavigationRow>
+      {/* Newsroom stays out until there are articles — see README-UPGRADE.md.
+      <NavigationRow>
         <NavigationItem href="/blog">Newsroom</NavigationItem>
       </NavigationRow> */}
     </nav>
@@ -150,11 +163,12 @@ function Navigation() {
 function RootLayoutInner({ children }: { children: React.ReactNode }) {
   let panelId = useId()
   let [expanded, setExpanded] = useState(false)
-  let openRef = useRef<React.ElementRef<'button'>>(null)
-  let closeRef = useRef<React.ElementRef<'button'>>(null)
-  let navRef = useRef<React.ElementRef<'div'>>(null)
+  let openRef = useRef<HTMLButtonElement>(null)
+  let closeRef = useRef<HTMLButtonElement>(null)
+  let navRef = useRef<HTMLDivElement>(null)
   let shouldReduceMotion = useReducedMotion()
 
+  // Close when a link points at the page we're already on.
   useEffect(() => {
     function onClick(event: MouseEvent) {
       if (
@@ -166,14 +180,34 @@ function RootLayoutInner({ children }: { children: React.ReactNode }) {
     }
 
     window.addEventListener('click', onClick)
-
-    return () => {
-      window.removeEventListener('click', onClick)
-    }
+    return () => window.removeEventListener('click', onClick)
   }, [])
+
+  // Escape closes the panel and returns focus to the button that opened it.
+  // Without this, keyboard users who open the menu have no way out but Tab.
+  useEffect(() => {
+    if (!expanded) return
+
+    function onKeyDown(event: KeyboardEvent) {
+      if (event.key === 'Escape') {
+        setExpanded(false)
+        openRef.current?.focus({ preventScroll: true })
+      }
+    }
+
+    window.addEventListener('keydown', onKeyDown)
+    return () => window.removeEventListener('keydown', onKeyDown)
+  }, [expanded])
 
   return (
     <MotionConfig transition={shouldReduceMotion ? { duration: 0 } : undefined}>
+      <a
+        href="#main"
+        className="sr-only z-50 focus:not-sr-only focus:absolute focus:left-6 focus:top-6 focus:rounded-full focus:bg-neutral-950 focus:px-5 focus:py-3 focus:text-sm focus:font-semibold focus:text-white"
+      >
+        Skip to content
+      </a>
+
       <header>
         <div
           className="absolute left-0 right-0 top-2 z-40 pt-14"
@@ -188,8 +222,8 @@ function RootLayoutInner({ children }: { children: React.ReactNode }) {
             expanded={expanded}
             onToggle={() => {
               setExpanded((expanded) => !expanded)
-              window.setTimeout(
-                () => closeRef.current?.focus({ preventScroll: true }),
+              window.setTimeout(() =>
+                closeRef.current?.focus({ preventScroll: true }),
               )
             }}
           />
@@ -214,8 +248,8 @@ function RootLayoutInner({ children }: { children: React.ReactNode }) {
                 expanded={expanded}
                 onToggle={() => {
                   setExpanded((expanded) => !expanded)
-                  window.setTimeout(
-                    () => openRef.current?.focus({ preventScroll: true }),
+                  window.setTimeout(() =>
+                    openRef.current?.focus({ preventScroll: true }),
                   )
                 }}
               />
@@ -230,17 +264,16 @@ function RootLayoutInner({ children }: { children: React.ReactNode }) {
         style={{ borderTopLeftRadius: 40, borderTopRightRadius: 40 }}
         className="relative flex flex-auto overflow-hidden bg-white pt-14"
       >
-        <motion.div
-          layout
-          className="relative isolate flex w-full flex-col pt-9"
-        >
+        <motion.div layout className="relative isolate flex w-full flex-col pt-9">
           <GridPattern
             className="absolute inset-x-0 -top-14 -z-10 h-[1000px] w-full fill-neutral-100 stroke-neutral-950/5 [mask-image:linear-gradient(to_bottom_left,white_40%,transparent_50%)]"
             yOffset={-96}
             interactive
           />
 
-          <main className="w-full flex-auto">{children}</main>
+          <main id="main" className="w-full flex-auto">
+            {children}
+          </main>
 
           <Footer />
         </motion.div>
@@ -251,11 +284,6 @@ function RootLayoutInner({ children }: { children: React.ReactNode }) {
 
 export function RootLayout({ children }: { children: React.ReactNode }) {
   let pathname = usePathname()
-  let [logoHovered, setLogoHovered] = useState(false)
 
-  return (
-    <RootLayoutContext.Provider value={{ logoHovered, setLogoHovered }}>
-      <RootLayoutInner key={pathname}>{children}</RootLayoutInner>
-    </RootLayoutContext.Provider>
-  )
+  return <RootLayoutInner key={pathname}>{children}</RootLayoutInner>
 }

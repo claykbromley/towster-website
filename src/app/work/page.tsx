@@ -1,5 +1,6 @@
 import { type Metadata } from 'next'
 import Link from 'next/link'
+import Image from 'next/image'
 
 import { Blockquote } from '@/components/Blockquote'
 import { Border } from '@/components/Border'
@@ -8,75 +9,119 @@ import { ContactSection } from '@/components/ContactSection'
 import { Container } from '@/components/Container'
 import { FadeIn } from '@/components/FadeIn'
 import { PageIntro } from '@/components/PageIntro'
-import { formatDate } from '@/lib/formatDate'
 import { type CaseStudy, type MDXEntry, loadCaseStudies } from '@/lib/mdx'
-import { Testimonial } from '@/components/Testimonial'
+import { legalNotices } from '@/lib/siteConfig'
+
+/**
+ * Public-releasable specifications only. Anything that reveals performance
+ * margins, materials sourcing, or integration detail belongs in the NDA deck.
+ */
+const specifications: Array<[string, string]> = [
+  ['Inflated envelope', '84 in × 72 in × 24 in'],
+  ['Packed weight', '20 lb (current build)'],
+  ['Shell', 'Urethane-coated fabric, heat-welded seams, RF-welded hardware'],
+  ['Next revision', 'Dyneema and Vectran — lighter, stronger, UV-resistant'],
+  ['Closure', 'Dual pressure-tight zipper, rated to 10 m seawater'],
+  ['Mounting', 'Standard L-track and AS33601 seat-rail interfaces'],
+  ['Carriers', 'Uncrewed air, ground, surface, and undersea platforms'],
+  ['Sourcing', 'Made in the USA, Berry Amendment aligned'],
+]
+
+function Specifications() {
+  return (
+    <Container className="mt-24">
+      <FadeIn>
+        <h2 className="font-display text-3xl font-medium text-neutral-950 sm:text-4xl">
+          Specifications
+        </h2>
+        <dl className="mt-10 grid grid-cols-1 gap-x-8 border-t border-neutral-200 sm:grid-cols-2">
+          {specifications.map(([label, value]) => (
+            <div
+              key={label}
+              className="border-b border-neutral-200 py-6 sm:flex sm:justify-between sm:gap-8"
+            >
+              <dt className="font-mono text-xs uppercase tracking-widest text-neutral-500 sm:pt-1">
+                {label}
+              </dt>
+              <dd className="mt-2 text-base text-neutral-950 sm:mt-0 sm:max-w-sm sm:text-right">
+                {value}
+              </dd>
+            </div>
+          ))}
+        </dl>
+        <p className="mt-6 text-sm text-neutral-500">
+          Figures describe the current prototype and will change as the build
+          progresses.
+        </p>
+      </FadeIn>
+    </Container>
+  )
+}
 
 function CaseStudies({
   caseStudies,
 }: {
   caseStudies: Array<MDXEntry<CaseStudy>>
 }) {
+  if (caseStudies.length === 0) return null
+
   return (
-    <Container className="mt-40">
+    <Container className="mt-24">
       <FadeIn>
-        <h2 className="font-display text-2xl font-semibold text-neutral-950">
-          Our Products
+        <h2 className="font-display text-3xl font-medium text-neutral-950 sm:text-4xl">
+          Configurations
         </h2>
       </FadeIn>
+
       <div className="mt-10 space-y-20 sm:space-y-24 lg:space-y-32">
         {caseStudies.map((caseStudy) => (
-          <FadeIn key={caseStudy.client}>
+          <FadeIn key={caseStudy.href}>
             <article>
-              <Border className="grid grid-cols-3 gap-x-8 gap-y-8 pt-16">
-                <div className="col-span-full sm:flex sm:items-center sm:justify-between sm:gap-x-8 lg:col-span-1 lg:block">
-                  {/*<div className="sm:flex sm:items-center sm:gap-x-6 lg:block">
+              <Border className="pt-16">
+                <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-20">
+                  
+                  {/* Text */}
+                  <div>
+                    <p className="font-display text-4xl font-medium text-neutral-950">
+                      <Link href={caseStudy.href}>
+                        {caseStudy.title}
+                      </Link>
+                    </p>
+
+                    <div className="mt-6 space-y-6 text-base text-neutral-600">
+                      {caseStudy.summary.map((paragraph) => (
+                        <p key={paragraph}>{paragraph}</p>
+                      ))}
+                    </div>
+
+                    <div className="mt-8 flex">
+                      <Button
+                        href={caseStudy.href}
+                        aria-label={`Read more about ${caseStudy.title}`}
+                      >
+                        Read more
+                      </Button>
+                    </div>
+
+                    {caseStudy.testimonial && (
+                      <Blockquote
+                        author={caseStudy.testimonial.author}
+                        className="mt-12"
+                      >
+                        {caseStudy.testimonial.content}
+                      </Blockquote>
+                    )}
+                  </div>
+
+                  {/* Image */}
+                  <div className="relative overflow-hidden rounded-2xl bg-neutral-100">
                     <Image
-                      src={caseStudy.logo}
-                      alt=""
-                      className="h-16 w-16 flex-none"
-                      unoptimized
+                      src={caseStudy.image.src}
+                      alt={caseStudy.title}
+                      className="h-auto w-full object-cover"
                     />
-                    {<h3 className="mt-6 text-sm font-semibold text-neutral-950 sm:mt-0 lg:mt-8">
-                      {caseStudy.client}
-                    </h3>}
-                  </div> */}
-                  {/*<div className="mt-1 flex gap-x-4 sm:mt-0 lg:block">
-                    <p className="text-sm tracking-tight text-neutral-950 after:ml-4 after:font-semibold after:text-neutral-300 after:content-['/'] lg:mt-2 lg:after:hidden">
-                      {caseStudy.service}
-                  </p/> */}
-                    {/*<p className="text-sm text-neutral-950 lg:mt-2">
-                      <time dateTime={caseStudy.date}>
-                        {formatDate(caseStudy.date)}
-                      </time>
-                    </p> 
-                  </div> */}
-                </div>
-                <div className="col-span-full lg:col-span-2 lg:max-w-2xl">
-                  <p className="font-display text-4xl font-medium text-neutral-950">
-                    <Link href={caseStudy.href}>{caseStudy.title}</Link>
-                  </p>
-                  <div className="mt-6 space-y-6 text-base text-neutral-600">
-                    {caseStudy.summary.map((paragraph) => (
-                      <p key={paragraph}>{paragraph}</p>
-                    ))}
                   </div>
-                  <div className="mt-8 flex">
-                    <Button
-                      href={caseStudy.href}
-                      aria-label={`Read case study: ${caseStudy.client}`}
-                    >
-                      Read case study
-                    </Button>
-                  </div>
-                  {caseStudy.testimonial && (
-                    <Blockquote
-                      author={caseStudy.testimonial.author}
-                      className="mt-12"
-                    >
-                      {caseStudy.testimonial.content}
-                    </Blockquote>
-                  )}
+
                 </div>
               </Border>
             </article>
@@ -88,9 +133,9 @@ function CaseStudies({
 }
 
 export const metadata: Metadata = {
-  title: 'Our Work',
+  title: 'The System',
   description:
-    'We believe in efficiency and maximizing our resources to provide the best value to our clients.',
+    'The TOWSTER Pod: a thermoregulated casualty evacuation pod with en route life support, built for crewed and uncrewed carriers across sea, ground, and air.',
 }
 
 export default async function Work() {
@@ -98,37 +143,36 @@ export default async function Work() {
 
   return (
     <>
-      <PageIntro
-        eyebrow="Our work"
-        title="Proven solutions for real-world problems."
-      >
-        <p className="padding-bottom: 20px;">
-          We believe in efficiency and maximizing our resources to provide the
-          best value .
+      <PageIntro eyebrow="The system" title="A sealed pod that treats in transit">
+        <p>
+          The pod carries a casualty through the part of the mission where care
+          usually stops: the move. It regulates temperature, hosts fielded life
+          support and monitoring hardware, streams vitals ahead to the receiving
+          role of care, and rides on whatever platform is available.
         </p>
-
-        <div className="video-responsive" style={{ paddingTop: '20px' }}>
-        <iframe
-          width="853"
-          height="480"
-          src="https://www.youtube.com/embed/G2zKD8OCK1o"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          title="YouTube video"
-        ></iframe>
-        </div>
+        <p>
+          Video walkthroughs and the abbreviated overview deck are on the{' '}
+          <Link
+            href="/media"
+            className="font-semibold text-neutral-950 underline-offset-4 hover:underline"
+          >
+            media page
+          </Link>
+          .
+        </p>
       </PageIntro>
+
+      <Specifications />
 
       <CaseStudies caseStudies={caseStudies} />
 
-      {/* <Testimonial
-        className="mt-24 sm:mt-32 lg:mt-40"
-        client={{ name: 'Mail Smirk', logo: logoMailSmirk }}
-      >
-        We approached <em>Studio</em> because we loved their past work. They
-        delivered something remarkably innovative in record time.
-      </Testimonial>
-
-      <Clients /> */}
+      <Container className="mt-16">
+        <FadeIn>
+          <p className="max-w-3xl border-l-2 border-neutral-200 pl-6 text-sm text-neutral-500">
+            {legalNotices.investigational} {legalNotices.patent}
+          </p>
+        </FadeIn>
+      </Container>
 
       <ContactSection />
     </>

@@ -1,6 +1,7 @@
 import { type Metadata } from 'next'
 
 import { RootLayout } from '@/components/RootLayout'
+import { Analytics } from "@vercel/analytics/next"
 
 import '@/styles/tailwind.css'
 
