@@ -136,7 +136,7 @@ export default function Form() {
     <FadeIn className="lg:order-last">
       <form onSubmit={onSubmit} noValidate>
         <h2 className="font-display text-base font-semibold text-neutral-950">
-          Send us a message
+          Send us a message - contact@towstercorp.com
         </h2>
 
         <div className="isolate mt-6 -space-y-px rounded-2xl bg-white/50">
