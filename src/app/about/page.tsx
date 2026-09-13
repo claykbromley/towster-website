@@ -18,12 +18,12 @@ interface Person {
 const people: Person[] = [
   { 
     name: 'Yousef Ahmed, M.D.',
-    role: 'Co-founder & CEO', 
+    role: 'Chief Strategy Officer', 
     image: '/team/Yousef_Ahmed.jpg'
   },
   {
     name: 'Andre Savadjian, M.D.',
-    role: 'Co-founder & COO',
+    role: 'Chief Operating Officer',
     image: '/team/Andre_Savadjian.jpg',
   },
   { 
@@ -32,19 +32,19 @@ const people: Person[] = [
     image: '/team/Matt_Brendel.jpg' 
   },
   {
-    name: 'Rodney Brenneman',
-    role: 'Business Manager',
-    image: '/team/Rodney_Brenneman.jpg',
+    name: 'Noel Sons',
+    role: 'Senior Technical Advisor',
+    image: '/team/Noel_Sons.jpg',
   },
   {
     name: 'Clayton Bromley',
-    role: 'Co-founder & Technical Advisor',
+    role: 'Technical Advisor',
     image: '/team/Clayton_Bromley.jpg',
   },
   {
-    name: 'Jacob Becker',
-    role: 'Co-founder & Technical Advisor',
-    image: '/team/Jacob_Becker.jpg',
+    name: 'Rodney Brenneman',
+    role: 'Business Manager',
+    image: '/team/Rodney_Brenneman.jpg',
   },
 ]
 
