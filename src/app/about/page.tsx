@@ -16,6 +16,11 @@ interface Person {
 }
 
 const people: Person[] = [
+  {
+    name: 'Madeline McCarthy',
+    role: 'Chief Executive Officer',
+    image: '/team/Madeline_McCarthy.jpg',
+  },
   { 
     name: 'Yousef Ahmed, M.D.',
     role: 'Chief Strategy Officer', 
@@ -37,14 +42,14 @@ const people: Person[] = [
     image: '/team/Noel_Sons.jpg',
   },
   {
+    name: 'John Link',
+    role: 'Technical Advisor',
+    image: '/team/John_Link.jpg',
+  },
+  {
     name: 'Clayton Bromley',
     role: 'Technical Advisor',
     image: '/team/Clayton_Bromley.jpg',
-  },
-  {
-    name: 'Rodney Brenneman',
-    role: 'Business Manager',
-    image: '/team/Rodney_Brenneman.jpg',
   },
 ]
 
